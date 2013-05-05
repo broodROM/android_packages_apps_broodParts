@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+      <PreferenceCategory android:title="@string/cpu_settings_title">
+  <ListPreference android:key="pref_cpu_gov" android:dialogTitle="@string/cpu_governors_title"
+                  android:title="@string/cpu_governors_title" android:summary="CPU Governor" android:persistent="true"/>
+
+  <ListPreference android:key="pref_freq_min" android:dialogTitle="@string/cpu_min_freq_title"
+                  android:title="@string/cpu_min_freq_title" android:summary="Minimum CPU frequency" android:persistent="true"/>
+
+  <ListPreference android:key="pref_freq_max" android:dialogTitle="@string/cpu_max_freq_title"
+                  android:title="@string/cpu_max_freq_title" android:summary="Maximum CPU frequency" android:persistent="true"/>
+  
+  </PreferenceCategory>
+  
+  <PreferenceCategory android:title="@string/str_io_sched">
+                          <ListPreference android:key="pref_io_sched" android:dialogTitle="@string/scheduler"
+                          android:title="@string/scheduler" android:summary="Choose IO Scheduler" />
+                          <ListPreference android:key="pref_read_ahead" android:title="@string/str_read_ahead" android:summary="Set SDcard Cache Size" android:dialogTitle="@string/str_read_ahead" android:persistent="true"/>
+
+                     </PreferenceCategory>
+
+  <PreferenceCategory android:title="@string/device_info_title">
+        <PreferenceScreen android:title="@string/title_battery_information" android:key="battery_information_settings" android:summary="@string/summary_battery_information">
+            <intent android:targetPackage="com.android.settings" android:action="android.intent.action.MAIN" android:targetClass="com.android.settings.BatteryInfo" />
+        </PreferenceScreen>
+        <PreferenceScreen android:title="@string/title_usage_statistics" android:key="usage_statistics_settings" android:summary="@string/summary_usage_statistics">
+            <intent android:targetPackage="com.android.settings" android:action="android.intent.action.MAIN" android:targetClass="com.android.settings.UsageStats" />
+        </PreferenceScreen>
+    </PreferenceCategory>
+    
+   <PreferenceCategory android:title="@string/str_other_settings">
+               <ListPreference android:key="pref_adb_notify" android:title="@string/adb_notify" android:dialogTitle="@string/adb_notify" android:summary="@string/adb_notify_summary" android:persistent="true" android:defaultValue="true"/>        
+                	<PreferenceScreen android:key="downloadhosts" android:summary="@string/hosts_sum" android:title="@string/hosts_title">
+                                     <intent android:targetPackage="com.broodplank.broodparts" android:action="android.intent.action.MAIN" android:targetClass="com.broodplank.broodparts.DOWNLOADHOSTS" /> 
+                                     </PreferenceScreen>  
+              </PreferenceCategory>
+              
+      <PreferenceCategory android:title="@string/str_kernel_settings">
+                	<PreferenceScreen android:key="oc" android:summary="@string/str_ocsum" android:title="@string/str_oc">
+                                     <intent android:targetPackage="com.broodplank.broodparts" android:action="android.intent.action.MAIN" android:targetClass="com.broodplank.broodparts.OC" /> 
+                    </PreferenceScreen>
+                    <PreferenceScreen android:key="ocuv" android:summary="@string/str_ocuvsum" android:title="@string/str_ocuv">
+                                     <intent android:targetPackage="com.broodplank.broodparts" android:action="android.intent.action.MAIN" android:targetClass="com.broodplank.broodparts.OCUV" /> 
+                    </PreferenceScreen>
+                    <PreferenceScreen android:key="nonoc" android:summary="@string/str_nonocsum" android:title="@string/str_nonoc">
+                                     <intent android:targetPackage="com.broodplank.broodparts" android:action="android.intent.action.MAIN" android:targetClass="com.broodplank.broodparts.NONOC" /> 
+                    </PreferenceScreen>
+                    <PreferenceScreen android:key="nonocuv" android:summary="@string/str_nonocuvsum" android:title="@string/str_nonocuv">
+                                     <intent android:targetPackage="com.broodplank.broodparts" android:action="android.intent.action.MAIN" android:targetClass="com.broodplank.broodparts.NONOCUV" /> 
+                    </PreferenceScreen>
+                                       
+              </PreferenceCategory>
+              
+              
+       <PreferenceCategory android:title="@string/str_tweaks">
+             <ListPreference android:key="pref_vm_tweak" android:dialogTitle="@string/vmtweak_title"
+                  android:title="@string/vmtweak_title" android:summary="@string/vmtweak_sum" android:persistent="true"/>
+            <ListPreference android:key="pref_gov_tweak" android:dialogTitle="@string/govtweak_title"
+                  android:title="@string/govtweak_title" android:summary="@string/govtweak_sum" android:persistent="true"/>
+             <ListPreference android:key="pref_io_tweak" android:dialogTitle="@string/iotweak_title"
+                  android:title="@string/iotweak_title" android:summary="@string/iotweak_sum" android:persistent="true"/>                   
+           <ListPreference android:key="pref_net_tweak" android:dialogTitle="@string/nettweak_title"
+                  android:title="@string/nettweak_title" android:summary="@string/nettweak_sum" android:persistent="true"/>  
+   
+                         </PreferenceCategory>
+           
+              
+    <PreferenceCategory android:title="@string/str_maintenance">
+           <PreferenceScreen android:key="clear_ram_cache" android:summary="Drop RAM Cache to get more free memory" android:title="@string/clearram_str">
+                                     <intent android:targetPackage="com.broodplank.broodparts" android:action="android.intent.action.MAIN" android:targetClass="com.broodplank.broodparts.CLEARRAMCACHE" /> 
+                               </PreferenceScreen>
+					<PreferenceScreen android:key="zipalign" android:summary="@string/zipalign_strsum" android:title="@string/zipalign_str">
+                                     <intent android:targetPackage="com.broodplank.broodparts" android:action="android.intent.action.MAIN" android:targetClass="com.broodplank.broodparts.ZIPALIGN" /> 
+                               </PreferenceScreen>
+                               				<PreferenceScreen android:key="vacuum" android:summary="@string/vacuum_strsum" android:title="@string/vacuum_str">
+                                     <intent android:targetPackage="com.broodplank.broodparts" android:action="android.intent.action.MAIN" android:targetClass="com.broodplank.broodparts.VACUUM" /> 
+                               </PreferenceScreen>
+                               </PreferenceCategory>
+                               
+        <PreferenceCategory android:title="@string/clean_title">
+    		
+            					<PreferenceScreen android:key="dalvikclean" android:summary="@string/dalvik_sum" android:title="@string/dalvik_title">
+                                     <intent android:targetPackage="com.broodplank.broodparts" android:action="android.intent.action.MAIN" android:targetClass="com.broodplank.broodparts.CLEANDALVIK" /> 
+                               </PreferenceScreen>
+                               <PreferenceScreen android:key="hardreset" android:summary="@string/hardreset_sum" android:title="@string/hardreset_str">
+                                     <intent android:targetPackage="com.broodplank.broodparts" android:action="android.intent.action.MAIN" android:targetClass="com.broodplank.broodparts.HARDRESET" /> 
+                               </PreferenceScreen>
+                               <PreferenceScreen android:key="aio" android:summary="@string/aio_sum" android:title="@string/aio_title">
+                                     <intent android:targetPackage="com.broodplank.broodparts" android:action="android.intent.action.MAIN" android:targetClass="com.broodplank.broodparts.AIO" /> 
+                               </PreferenceScreen>
+                               
+                           </PreferenceCategory>
+               
+</PreferenceScreen>

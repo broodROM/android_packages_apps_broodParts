@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="yesno">
+        <item>1</item>
+        <item>0</item>
+    </string-array>
+    <string-array name="read_ahead_kb_size">
+        <item>64</item>
+        <item>128</item>
+        <item>256</item>
+        <item>512</item>
+        <item>1024</item>
+        <item>2048</item>
+        <item>3072</item>
+        <item>4096</item>
+    </string-array>
+       <string-array name="density_array">
+		<item>200 (960x576)</item>
+		<item>210 (914x548)</item>
+		<item>220 (872x523)</item>
+		<item>230 (834x500)</item>
+		<item>240 (800x480)</item>
+		<item>250 (768x460)</item>
+		<item>260 (738x443)</item>
+		<item>270 (711x426)</item>
+		<item>280 (685x411)</item>
+    </string-array>
+</resources>
