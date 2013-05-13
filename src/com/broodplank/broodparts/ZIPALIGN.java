@@ -98,6 +98,7 @@ public void ZIPALIGNNOW() {
 	    			 		     total.append(line+"\n");
 	    				 	     
 	    			 	 	      builder1.setMessage(total);
+	    			 	 	      r.close();
 	    			 		 }
 	    			     } catch (IOException ex) {
 	    			    		return;

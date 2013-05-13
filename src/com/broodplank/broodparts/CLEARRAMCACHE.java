@@ -1,9 +1,13 @@
 package com.broodplank.broodparts;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
+
+import android.app.ActivityManager;
+import android.app.ActivityManager.MemoryInfo;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -13,57 +17,35 @@ import com.stericson.RootTools.RootTools;
 
 
 
-
 public class CLEARRAMCACHE extends mainActivity {
 
-	public static final String GRPMEM = Environment.getExternalStorageDirectory().getPath()+"/memfree";
-    private static final String TAG = "CPUSettings";
+	public static final String GRPMEM = "/proc/meminfo";
+	public static final String GETMEM = Environment.getExternalStorageDirectory().getPath()+"/memfree";
+	File file=new File(Environment.getExternalStorageDirectory(), "memfree");
+    private static final String TAG = "broodParts Lite";
 
 	
-
-		
-		
 		@Override
 	    public void onCreate(Bundle savedInstanceState) {
-	        super.onCreate(savedInstanceState);
-//	        setContentView(R.layout.clearram);
-	        
-	        
+	        super.onCreate(null);
+	        	        
 	        
 	        CLEARRAM();
 
-	
-//	        setContentView(R.layout.activity_main);
 		}
 		
 		
-
-public static String readOneLine(String fname) {
-    BufferedReader br;
-    String line = null;
-
-    try {
-        br = new BufferedReader(new FileReader(fname), 512);
-        try {
-            line = br.readLine();
-        } finally {
-            br.close();
-        }
-    } catch (Exception e) {
-        Log.e(TAG, "IO Exception when reading /sys/ file", e);
-    }
-    return line;
-}
 	
 public void CLEARRAM() {
 	
-	
-	 CommandCapture command = new CommandCapture(0, "rm /sdcard/memfree","busybox free | grep Mem: > /sdcard/memfree"); {
- 		try {
- 	
- 			RootTools.getShell(true).add(command).waitForFinish();
- 		
 
+	
+	 CommandCapture command = new CommandCapture(0, "busybox cat /proc/meminfo | grep MemFree: > "+GETMEM); {
+ 		try {
+// 	
+ 			RootTools.getShell(true).add(command).waitForFinish();
+// 		
+//
  		} catch (InterruptedException e1) {
  			// TODO Auto-generated catch block
  			e1.printStackTrace();
@@ -77,12 +59,17 @@ public void CLEARRAM() {
      }
 	 
 
+	 MemoryInfo mi = new MemoryInfo();
+	 ActivityManager activityManager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+	 activityManager.getMemoryInfo(mi);
+	 long availableMegs = mi.availMem / 1024 / 1024;
+	 
+     String availableMem = readOneLine(GETMEM).replace("MemFree:", "").replace(" ", "").replace("kB", " kB");
 
 	 
-	 
      Toast.makeText(getApplicationContext(), 
-		       readOneLine(GRPMEM).replaceFirst("Mem:        ", "Total/Used/Free/Shared/Buffers:\n").replace("       ", " / ").replace("        ", " / ").replace("          ", " / ").replace("            ", " / "), Toast.LENGTH_LONG).show();
-	 
+		     "RAM Info (before dropping caches)\n\nRAM Cache Size:\n"+ availableMem+"\n\nMB Ram Free:\n"+availableMegs+" MB", Toast.LENGTH_LONG).show();     
+	
 
  
         CommandCapture command1 = new CommandCapture(0, "echo 3 > /proc/sys/vm/drop_caches", "busybox sleep 1", "echo 0 > /proc/sys/vm/drop_caches"); {
@@ -103,32 +90,61 @@ public void CLEARRAM() {
     		}
         }
     		
-        
-   	 CommandCapture command2 = new CommandCapture(0, "rm /sdcard/memfree","busybox free | grep Mem:  > /sdcard/memfree"); {
+//        
+   	 CommandCapture command2 = new CommandCapture(0, "busybox cat /proc/meminfo | grep MemFree: > "+GETMEM); {
   		try {
-  	
+ // 	
   			RootTools.getShell(true).add(command2).waitForFinish();
-  		
-
-  		} catch (InterruptedException e3) {
+//  		
+ //
+  		} catch (InterruptedException e1) {
   			// TODO Auto-generated catch block
-  			e3.printStackTrace();
-  		} catch (IOException e3) {
+  			e1.printStackTrace();
+  		} catch (IOException e1) {
   			// TODO Auto-generated catch block
-  			e3.printStackTrace();
-  		} catch (TimeoutException e3) {
+  			e1.printStackTrace();
+  		} catch (TimeoutException e1) {
   			// TODO Auto-generated catch block
-  			e3.printStackTrace();
+  			e1.printStackTrace();
   		}
       }
  	 
-      Toast.makeText(getApplicationContext(), 
-    		  readOneLine(GRPMEM).replaceFirst("Mem:", "Total/Used/Free/Shared/Buffers:\n").replace("       ", " / ").replace("        ", " / ").replace("          ", " / ").replace("            ", " / "), Toast.LENGTH_LONG).show();
  	 
-    	
-	}
-	
+    
+   	         		 
+   	 
+   	 MemoryInfo mi1 = new MemoryInfo();
+	 ActivityManager activityManager1 = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+	 activityManager1.getMemoryInfo(mi1);
+	 long availableMegs1 = mi1.availMem / 1024 / 1024;
+	 
+     String availableMem1 = readOneLine(GETMEM).replace("MemFree:", "").replace(" ", "").replace("kB", " kB");
 
+	 
+     Toast.makeText(getApplicationContext(), 
+		     "RAM Info (after dropping caches)\n\nRAM Cache Size:\n"+ availableMem1+"\n\nMB Ram Free:\n"+availableMegs1+" MB", Toast.LENGTH_LONG).show();     
+ 
+   	 
+ 	 
+}
+
+
+public static String readOneLine(String fname) {
+    BufferedReader br;
+    String line = null;
+
+    try {
+        br = new BufferedReader(new FileReader(fname), 512);
+        try {
+            line = br.readLine();
+        } finally {
+            br.close();
+        }
+    } catch (Exception e) {
+        Log.e(TAG, "IO Exception when reading /sys/ file", e);
+    }
+    return line;
+}
     		 
      }
 

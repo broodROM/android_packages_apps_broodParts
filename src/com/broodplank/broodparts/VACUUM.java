@@ -98,6 +98,7 @@ public void VACUUMNOW() {
 	    			 		     total.append(line+"\n");
 	    				 	     
 	    			 	 	      builder1.setMessage(total);
+	    			 	 	      r.close();
 	    			 		 }
 	    			     } catch (IOException ex) {
 	    			    		return;
@@ -110,6 +111,7 @@ public void VACUUMNOW() {
 	    			     }
 	    			    });
 	    			    	 builder1.show();
+	    			    	 
 	    			    	 
 	    			    	
 	    		

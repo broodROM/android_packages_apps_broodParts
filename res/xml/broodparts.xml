@@ -46,10 +46,7 @@
                     <PreferenceScreen android:key="nonoc" android:summary="@string/str_nonocsum" android:title="@string/str_nonoc">
                                      <intent android:targetPackage="com.broodplank.broodparts" android:action="android.intent.action.MAIN" android:targetClass="com.broodplank.broodparts.NONOC" /> 
                     </PreferenceScreen>
-                    <PreferenceScreen android:key="nonocuv" android:summary="@string/str_nonocuvsum" android:title="@string/str_nonocuv">
-                                     <intent android:targetPackage="com.broodplank.broodparts" android:action="android.intent.action.MAIN" android:targetClass="com.broodplank.broodparts.NONOCUV" /> 
-                    </PreferenceScreen>
-                                       
+                 
               </PreferenceCategory>
               
               
